@@ -12,21 +12,18 @@ public class WordFinder {
 
 	public static void main(String[] args) {
 		/* Find the word with the most Js in the dictionary. */
-		
+
 		// map the strings to Word objects
-		Stream<Word> wordsWithJayCount = loadWordList()
-				.stream()
+		Stream<Word> wordsWithJayCount = loadWordList().stream()
 				.map(wordAsString -> new Word(wordAsString, countOccurrences(wordAsString, 'j')));
-		
+
 		// sort the Words by most Js
-		Word mostJays = wordsWithJayCount
-				.sorted((word1, word2) -> word2.numberOfJays - word1.numberOfJays)
-				.findFirst()
+		Word mostJays = wordsWithJayCount.sorted((word1, word2) -> word2.numberOfJays - word1.numberOfJays).findFirst()
 				.get();
-		
+
 		// the first item is the answer!
 		System.out.println(mostJays);
-		
+
 	}
 
 	private static int countOccurrences(String haystack, char needle) {
@@ -53,19 +50,19 @@ public class WordFinder {
 }
 
 class Word {
-	
+
 	int numberOfJays;
 	String theWord;
-	
+
 	public Word(String theWord, int numberOfJays) {
 		super();
 		this.numberOfJays = numberOfJays;
 		this.theWord = theWord;
 	}
-	
+
 	@Override
 	public String toString() {
 		return theWord + " " + numberOfJays;
 	}
-	
+
 }
